@@ -15,10 +15,6 @@ namespace xoProd
             
             Game game1=new Game();
 
-
-
-
-//            Console.Clear();
             Console.ReadLine();
         }
     }
