@@ -1,1 +1,7 @@
 C:\Users\konstantin\Documents\Visual Studio 2012\Projects\xoProd\xoProd\bin\Debug\xoProd.exe.config
+D:\xo\xo\xoProd\xoProd\bin\Debug\xoProd.exe.config
+D:\xo\xo\xoProd\xoProd\bin\Debug\xoProd.exe
+D:\xo\xo\xoProd\xoProd\bin\Debug\xoProd.pdb
+D:\xo\xo\xoProd\xoProd\obj\Debug\xoProd.csprojResolveAssemblyReference.cache
+D:\xo\xo\xoProd\xoProd\obj\Debug\xoProd.exe
+D:\xo\xo\xoProd\xoProd\obj\Debug\xoProd.pdb
