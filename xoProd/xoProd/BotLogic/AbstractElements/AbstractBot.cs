@@ -2,6 +2,6 @@
 {
     public abstract class AbstractBot
     {
-        public abstract void ChooseStep();
+        public abstract string ChooseStep(int[,] pole, int valueToInsert);
     }
 }

@@ -2,14 +2,37 @@
 
 namespace xoProd
 {
+    public enum PlayerType
+    {
+        Person,
+        Computer
+    }
+
+    public enum ValueToInsertType
+    {
+        X,
+        O
+    }
+
+    public class PlayerInfo
+    {
+        public PlayerType PlayerType { get; set; }
+        public ValueToInsertType ValueToInsert { get; set; }
+    }
+
     public class Game
     {
         private Area GameArea;
         private bool IsFinish;
         private readonly AbstractBot Bot;
+
+        private PlayerInfo[] whoPlay = new PlayerInfo[2];
+
         //todo добавить валидацию на вводимые значения(Андрей)
         public Game(BotFactory botFactory)
         {
+            whoPlay[0] = new PlayerInfo {PlayerType = PlayerType.Person, ValueToInsert = ValueToInsertType.X};
+            whoPlay[1] = new PlayerInfo {PlayerType = PlayerType.Computer, ValueToInsert = ValueToInsertType.O};
 
             Bot = botFactory.CreateBot();
 
@@ -22,28 +45,46 @@ namespace xoProd
 
         private void GameProcess()
         {
-            int playerNumber = 1;
+            int playerNumber = 0;
             while (!IsFinish)
             {
-                string xyAsString = Console.ReadLine();
-                int x = int.Parse(xyAsString[0].ToString());
-                int y = int.Parse(xyAsString[2].ToString());
-
                 int whatInsertInArea = 0;
 
-                if (playerNumber == 1)
-                    whatInsertInArea = 1;
-                else
-                    whatInsertInArea = 2;
-
-                var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
-
-                if (!insertResult)
+                if (whoPlay[playerNumber].PlayerType == PlayerType.Person)
                 {
-                    Console.WriteLine("select other x, y");
-                    Console.ReadLine();
-                    continue;
+                    string xyAsString = Console.ReadLine();
+                    int x = int.Parse(xyAsString[0].ToString());
+                    int y = int.Parse(xyAsString[2].ToString());
+
+                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.X)
+                        whatInsertInArea = 1;
+                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.O)
+                        whatInsertInArea = 2;
+                    var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
+                    
+                    if (!insertResult)
+                    {
+                        Console.WriteLine("select other x, y");
+                        Console.ReadLine();
+                        continue;
+                    }
                 }
+                else
+                {
+                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.X)
+                        whatInsertInArea = 1;
+                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.O)
+                        whatInsertInArea = 2;
+
+                    var botXY = Bot.ChooseStep(GameArea.pole, whatInsertInArea);
+                 
+                    int x = int.Parse(botXY[0].ToString());
+                    int y = int.Parse(botXY[2].ToString());
+                    
+                    var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
+
+                }
+               
                 Console.Clear();
                 Console.WriteLine();
                 GameArea.PrintPole();
@@ -51,12 +92,12 @@ namespace xoProd
                 CheckGameStatus();
                 if (IsFinish)
                 {
-                    Console.WriteLine("{0} is win", playerNumber == 1 ? "player" : "computer");
+                    Console.WriteLine("{0} is win", playerNumber == 0 ? "player" : "computer");
                 }
 
                 playerNumber++;
-                if (playerNumber > 2)
-                    playerNumber = 1;
+                if (playerNumber > 1)
+                    playerNumber = 0;
             }
         }
 
@@ -70,6 +111,5 @@ namespace xoProd
             if (checkCollumns || checkDiagonal || checkNombers || checkRows)
                 IsFinish = true;
         }
-
     }
 }
