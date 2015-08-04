@@ -2,18 +2,6 @@
 
 namespace xoProd
 {
-    public enum PlayerType
-    {
-        Person,
-        Computer
-    }
-
-    public enum ValueToInsertType
-    {
-        X,
-        O
-    }
-
     public class PlayerInfo
     {
         public PlayerType PlayerType { get; set; }
@@ -22,23 +10,23 @@ namespace xoProd
 
     public class Game
     {
-        private Area GameArea;
-        private bool IsFinish;
-        private readonly AbstractBot Bot;
+        private readonly Area _gameArea;
+        private bool _isFinish;
+        private readonly AbstractBot _bot;
 
-        private PlayerInfo[] whoPlay = new PlayerInfo[2];
+        private readonly PlayerInfo[] _whoPlayNow = new PlayerInfo[2];
 
         //todo добавить валидацию на вводимые значения(Андрей)
         public Game(BotFactory botFactory)
         {
-            whoPlay[0] = new PlayerInfo {PlayerType = PlayerType.Person, ValueToInsert = ValueToInsertType.X};
-            whoPlay[1] = new PlayerInfo {PlayerType = PlayerType.Computer, ValueToInsert = ValueToInsertType.O};
+            _whoPlayNow[0] = new PlayerInfo {PlayerType = PlayerType.Person, ValueToInsert = ValueToInsertType.X};
+            _whoPlayNow[1] = new PlayerInfo {PlayerType = PlayerType.Computer, ValueToInsert = ValueToInsertType.O};
 
-            Bot = botFactory.CreateBot();
+            _bot = botFactory.CreateBot();
 
-            GameArea = new Area();
+            _gameArea = new Area();
             Console.WriteLine("Start Game");
-            GameArea.PrintPole();
+            _gameArea.PrintPole();
 
             GameProcess();
         }
@@ -46,21 +34,21 @@ namespace xoProd
         private void GameProcess()
         {
             int playerNumber = 0;
-            while (!IsFinish)
+            while (!_isFinish)
             {
                 int whatInsertInArea = 0;
 
-                if (whoPlay[playerNumber].PlayerType == PlayerType.Person)
+                if (_whoPlayNow[playerNumber].PlayerType == PlayerType.Person)
                 {
                     string xyAsString = Console.ReadLine();
                     int x = int.Parse(xyAsString[0].ToString());
                     int y = int.Parse(xyAsString[2].ToString());
 
-                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.X)
+                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.X)
                         whatInsertInArea = 1;
-                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.O)
+                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.O)
                         whatInsertInArea = 2;
-                    var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
+                    var insertResult = _gameArea.UpdatePole(x, y, whatInsertInArea);
                     
                     if (!insertResult)
                     {
@@ -71,26 +59,26 @@ namespace xoProd
                 }
                 else
                 {
-                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.X)
+                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.X)
                         whatInsertInArea = 1;
-                    if (whoPlay[playerNumber].ValueToInsert == ValueToInsertType.O)
+                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.O)
                         whatInsertInArea = 2;
 
-                    var botXY = Bot.ChooseStep(GameArea.pole, whatInsertInArea);
+                    var botXy = _bot.ChooseStep(_gameArea.pole, whatInsertInArea);
                  
-                    int x = int.Parse(botXY[0].ToString());
-                    int y = int.Parse(botXY[2].ToString());
+                    int x = int.Parse(botXy[0].ToString());
+                    int y = int.Parse(botXy[2].ToString());
                     
-                    var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
+                    _gameArea.UpdatePole(x, y, whatInsertInArea);
 
                 }
                
                 Console.Clear();
                 Console.WriteLine();
-                GameArea.PrintPole();
+                _gameArea.PrintPole();
 
                 CheckGameStatus();
-                if (IsFinish)
+                if (_isFinish)
                 {
                     Console.WriteLine("{0} is win", playerNumber == 0 ? "player" : "computer");
                 }
@@ -103,13 +91,13 @@ namespace xoProd
 
         private void CheckGameStatus()
         {
-            var checkCollumns = GameArea.CheckCollumns();
-            var checkDiagonal = GameArea.CheckDiagonal();
-            var checkNombers = GameArea.CheckNombers();
-            var checkRows = GameArea.CheckRows();
+            var checkCollumns = _gameArea.CheckCollumns();
+            var checkDiagonal = _gameArea.CheckDiagonal();
+            var checkNombers = _gameArea.CheckNombers();
+            var checkRows = _gameArea.CheckRows();
 
             if (checkCollumns || checkDiagonal || checkNombers || checkRows)
-                IsFinish = true;
+                _isFinish = true;
         }
     }
 }
