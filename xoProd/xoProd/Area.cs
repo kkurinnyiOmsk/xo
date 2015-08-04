@@ -24,9 +24,15 @@ namespace xoProd
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.Write(pole[i,j] + " ");
-                }
+                    if (pole[i, j] == 1)
+                        Console.Write("[X] ");
+                    if(pole[i,j] == 2)
+                        Console.Write("[O] ");
+                    if (pole[i, j] == 0)
+                        Console.Write("[] ");
 
+
+                }
                 Console.WriteLine();
             }
            

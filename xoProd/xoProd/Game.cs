@@ -43,7 +43,7 @@ namespace xoProd
                 CheckGameStatus();
                 if (IsFinish)
                 {
-                    Console.WriteLine("{0} is win", playerNumber ==1 ? "player" :"computer");
+                    Console.WriteLine("{0} is win", playerNumber == 1 ? "player" :"computer");
                 }
               
                 playerNumber++;
