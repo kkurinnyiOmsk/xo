@@ -6,9 +6,12 @@ namespace xoProd
     {
         private Area GameArea;
         private bool IsFinish;
-
-        public Game()
+        private readonly AbstractBot Bot;
+        public Game(BotFactory botFactory)
         {
+
+            Bot = botFactory.CreateBot();
+
             GameArea = new Area();
             Console.WriteLine("Start Game");
             GameArea.PrintPole();

@@ -13,7 +13,7 @@ namespace xoProd
         static void Main(string[] args)
         {
             
-            Game game1=new Game();
+            Game game1=new Game(new SimpleBotFactory());
 
             Console.ReadLine();
         }
