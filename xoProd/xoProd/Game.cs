@@ -7,7 +7,7 @@ namespace xoProd
         private Area GameArea;
         private bool IsFinish;
         private readonly AbstractBot Bot;
-  
+        //todo добавить валидацию на вводимые значения(Андрей)
         public Game(BotFactory botFactory)
         {
 
@@ -45,6 +45,7 @@ namespace xoProd
                     continue;
                 }
                 Console.Clear();
+                Console.WriteLine();
                 GameArea.PrintPole();
 
                 CheckGameStatus();

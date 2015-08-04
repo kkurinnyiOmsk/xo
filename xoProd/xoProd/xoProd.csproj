@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotLogic\AbstractElements\AbstractBot.cs" />
     <Compile Include="Area.cs" />
+    <Compile Include="BotLogic\AbstractElements\BotFactory.cs" />
+    <Compile Include="BotLogic\ConcreteBot\HardBot.cs" />
+    <Compile Include="BotLogic\ConcreteBot\SimpleBot.cs" />
+    <Compile Include="BotLogic\SimpleBotFactory.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
