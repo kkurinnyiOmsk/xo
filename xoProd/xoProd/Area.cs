@@ -19,7 +19,7 @@ namespace xoProd
         }
 
         public void PrintPole()
-        {
+        { //todo печать статистики по турниру ( слева от игрового поля) 
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
