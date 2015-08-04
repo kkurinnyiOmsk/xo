@@ -30,5 +30,17 @@ namespace XOUnitTest
             }
 
         }
+        //todo покрыть весь код тестами
+        [TestMethod]
+        public void CheckRowsTest()
+        {
+            
+        }
+
+        [TestMethod]
+        public void CheckNombersTest()
+        {
+
+        }
     }
 }
