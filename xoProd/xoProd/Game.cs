@@ -44,10 +44,7 @@ namespace xoProd
                     int x = int.Parse(xyAsString[0].ToString());
                     int y = int.Parse(xyAsString[2].ToString());
 
-                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.X)
-                        whatInsertInArea = 1;
-                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.O)
-                        whatInsertInArea = 2;
+                    whatInsertInArea = WhatInsertInArea(playerNumber, whatInsertInArea);
                     var insertResult = _gameArea.UpdatePole(x, y, whatInsertInArea);
                     
                     if (!insertResult)
@@ -59,10 +56,7 @@ namespace xoProd
                 }
                 else
                 {
-                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.X)
-                        whatInsertInArea = 1;
-                    if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.O)
-                        whatInsertInArea = 2;
+                    whatInsertInArea = WhatInsertInArea(playerNumber, whatInsertInArea);
 
                     var botXy = _bot.ChooseStep(_gameArea.pole, whatInsertInArea);
                  
@@ -87,6 +81,15 @@ namespace xoProd
                 if (playerNumber > 1)
                     playerNumber = 0;
             }
+        }
+
+        private int WhatInsertInArea(int playerNumber, int whatInsertInArea)
+        {
+            if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.X)
+                whatInsertInArea = 1;
+            if (_whoPlayNow[playerNumber].ValueToInsert == ValueToInsertType.O)
+                whatInsertInArea = 2;
+            return whatInsertInArea;
         }
 
         private void CheckGameStatus()
