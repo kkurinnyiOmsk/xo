@@ -12,7 +12,7 @@ namespace xoProd
     {
         static void Main(string[] args)
         {
-            
+            //todo добавить несколько игр подряд - турнир и вести статистику игр
             Game game1=new Game(new SimpleBotFactory());
 
             Console.ReadLine();

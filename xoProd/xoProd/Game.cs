@@ -7,6 +7,7 @@ namespace xoProd
         private Area GameArea;
         private bool IsFinish;
         private readonly AbstractBot Bot;
+  
         public Game(BotFactory botFactory)
         {
 
@@ -16,8 +17,12 @@ namespace xoProd
             Console.WriteLine("Start Game");
             GameArea.PrintPole();
 
-            int playerNumber = 1;
+            GameProcess();
+        }
 
+        private void GameProcess()
+        {
+            int playerNumber = 1;
             while (!IsFinish)
             {
                 string xyAsString = Console.ReadLine();
@@ -42,19 +47,18 @@ namespace xoProd
                 Console.Clear();
                 GameArea.PrintPole();
 
-              
                 CheckGameStatus();
                 if (IsFinish)
                 {
-                    Console.WriteLine("{0} is win", playerNumber == 1 ? "player" :"computer");
+                    Console.WriteLine("{0} is win", playerNumber == 1 ? "player" : "computer");
                 }
-              
+
                 playerNumber++;
                 if (playerNumber > 2)
                     playerNumber = 1;
             }
         }
-    
+
         private void CheckGameStatus()
         {
             var checkCollumns = GameArea.CheckCollumns();
