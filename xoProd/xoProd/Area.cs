@@ -5,10 +5,11 @@ namespace xoProd
 {
     public class Area
     {
-        int [,] pole = new int[3,3];
+        public int[,] pole { get; private set; }
 
         public Area()
         {
+           pole = new int[3,3];
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -40,10 +41,13 @@ namespace xoProd
 
         public bool UpdatePole(int x, int y, int value)
         {
-            bool result = false;
-            if (pole[x, y] == 0)
+            var fixX = x - 1;
+            var fixY = y - 1;
+
+            bool result;
+            if (pole[fixX, fixY] == 0)
             {
-                pole[x, y] = value;
+                pole[fixX, fixY] = value;
                 result = true;
             }
             else

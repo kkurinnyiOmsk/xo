@@ -36,7 +36,7 @@ namespace xoProd
                 else
                     whatInsertInArea = 2;
 
-                var insertResult = GameArea.UpdatePole(x - 1, y - 1, whatInsertInArea);
+                var insertResult = GameArea.UpdatePole(x, y, whatInsertInArea);
 
                 if (!insertResult)
                 {

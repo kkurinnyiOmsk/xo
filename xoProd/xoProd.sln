@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xoProd", "xoProd\xoProd.csproj", "{24CB11C0-5BFA-41A5-A358-615311299747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XOUnitTest", "XOUnitTest\XOUnitTest.csproj", "{8F1767F7-A7D0-4CB3-A07D-6DF04CD8388F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{24CB11C0-5BFA-41A5-A358-615311299747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24CB11C0-5BFA-41A5-A358-615311299747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24CB11C0-5BFA-41A5-A358-615311299747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1767F7-A7D0-4CB3-A07D-6DF04CD8388F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1767F7-A7D0-4CB3-A07D-6DF04CD8388F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1767F7-A7D0-4CB3-A07D-6DF04CD8388F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1767F7-A7D0-4CB3-A07D-6DF04CD8388F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

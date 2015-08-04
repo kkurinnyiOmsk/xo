@@ -1,0 +1,7 @@
+D:\xo\xo\xoProd\XOUnitTest\bin\Debug\XOUnitTest.dll
+D:\xo\xo\xoProd\XOUnitTest\bin\Debug\XOUnitTest.pdb
+D:\xo\xo\xoProd\XOUnitTest\bin\Debug\xoProd.exe
+D:\xo\xo\xoProd\XOUnitTest\bin\Debug\xoProd.pdb
+D:\xo\xo\xoProd\XOUnitTest\obj\Debug\XOUnitTest.csprojResolveAssemblyReference.cache
+D:\xo\xo\xoProd\XOUnitTest\obj\Debug\XOUnitTest.dll
+D:\xo\xo\xoProd\XOUnitTest\obj\Debug\XOUnitTest.pdb
