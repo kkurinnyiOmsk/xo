@@ -7,6 +7,51 @@ namespace xoProd
         private Area GameArea;
         private bool IsFinish;
 
+        public Game()
+        {
+            GameArea = new Area();
+            Console.WriteLine("Start Game");
+            GameArea.PrintPole();
+
+            int playerNumber = 1;
+
+            while (!IsFinish)
+            {
+                string xyAsString = Console.ReadLine();
+                int x = int.Parse(xyAsString[0].ToString());
+                int y = int.Parse(xyAsString[2].ToString());
+
+                int whatInsertInArea = 0;
+
+                if (playerNumber == 1)
+                    whatInsertInArea = 1;
+                else
+                    whatInsertInArea = 2;
+
+                var insertResult = GameArea.UpdatePole(x - 1, y - 1, whatInsertInArea);
+
+                if (!insertResult)
+                {
+                    Console.WriteLine("select other x, y");
+                    Console.ReadLine();
+                    continue;
+                }
+                Console.Clear();
+                GameArea.PrintPole();
+
+              
+                CheckGameStatus();
+                if (IsFinish)
+                {
+                    Console.WriteLine("{0} is win", playerNumber ==1 ? "player" :"computer");
+                }
+              
+                playerNumber++;
+                if (playerNumber > 2)
+                    playerNumber = 1;
+            }
+        }
+    
         private void CheckGameStatus()
         {
             var checkCollumns = GameArea.CheckCollumns();
@@ -17,50 +62,6 @@ namespace xoProd
             if (checkCollumns || checkDiagonal || checkNombers || checkRows)
                 IsFinish = true;
         }
-
-       
-
-        public Game()
-        {
-            GameArea = new Area();
-            Console.WriteLine("Start Game");
-            GameArea.PrintPole();
-
-            int gameNumber = 1;
-
-            while (!IsFinish)
-            {
-                string xy = Console.ReadLine();
-                int x = int.Parse(xy[0].ToString());
-                int y = int.Parse(xy[2].ToString());
-
-                int value = 0;
-                if (gameNumber == 1)
-                    value = 1;
-                else
-                    value = 2;
-
-                var updateResult = GameArea.UpdatePole(x - 1, y - 1, value);
-
-                if (!updateResult)
-                {
-                    Console.WriteLine("select other x, y");
-                    Console.ReadLine();
-                    continue;
-                }
-                Console.Clear();
-                GameArea.PrintPole();
-
-                gameNumber++;
-                if (gameNumber > 2)
-                    gameNumber = 1;
-                CheckGameStatus();
-            }
-
-            Console.WriteLine("Game over");
-            
-        }
-
 
     }
 }
